@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recommandation
+spec:
+  selector:
+    matchLabels:
+      app: recommandation
+  template:
+    metadata:
+      labels:
+        app: recommandation
+    spec:
+      containers:
+      - name: server
+        image: mohamedabid1/recommandation:latest
+        imagePullPolicy: Always 
+        ports:
+        - containerPort: 8080
+        env:
+        - name: PORT
+          value: "8080"
+        - name: DISABLE_PROFILER
+          value: "1"
+        - name: PRODUCT_CATALOG_SERVICE_ADDR
+          value: "productcatalogue:3550" 
+        resources:
+          limits:
+            memory: "300Mi"
+            cpu: "300m"
+          requests:
+            memory: "180Mi"
+            cpu: "200m"
+        readinessProbe:
+          initialDelaySeconds: 20
+          periodSeconds: 15
+          grpc:
+            port: 8080
+        livenessProbe:
+          initialDelaySeconds: 20
+          periodSeconds: 15
+          grpc:
+            port: 8080
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsUser: 1000 
+          runAsGroup: 1000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: recommandation
+spec:
+  type: ClusterIP
+  selector:
+    app: recommandation
+  ports:
+  - name: grpc
+    port: 8080
+    targetPort: 8080

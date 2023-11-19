@@ -1,0 +1,87 @@
+Plan du Rapport - Partie Théorique
+
+Introduction
+1.1 Contexte et Motivation du Projet
+1.2 Objectifs du Projet
+1.3 Aperçu d'Istio
+1.4 Structure du Rapport
+
+Introduction à Istio
+2.1 Fondamentaux d'Istio
+- Gestion du Trafic
+- Sécurité
+- Surveillance
+- Gestion des Erreurs
+2.2 Importance dans les Environnements de Microservices
+
+Architecture Monolithique vs Microservices
+3.1 Introduction aux Architectures Monolithiques
+- Caractéristiques
+- Avantages et Inconvénients
+3.2 Introduction aux Applications de Microservices
+- Caractéristiques
+- Avantages et Inconvénients
+3.3 Choix de l'Architecture pour le Projet
+- Justification du Choix
+3.4 Comparaison des Déploiements Monolithiques et Microservices
+- Évolutivité
+- Maintenance
+- Déploiement
+- Complexité
+
+Conclusion - Partie Théorique
+4.1 Résumé des Concepts Théoriques
+4.2 Raisonnement derrière les Choix Architecturaux
+4.3 Transition vers la Partie Pratique
+
+Plan du Rapport - Partie Pratique
+
+Mise en Place de l'Environnement
+5.1 Choix du Cluster Kubernetes
+- Justification du Choix
+5.2 Déploiement du Cluster (Minikube ou Cloud)
+5.3 Installation d'Istio sur le Cluster
+
+Déploiement de l'Application
+6.1 Architecture de l'Application de Microservices
+- Description des Services (Frontend, Backend, Base de Données)
+6.2 Stratégie de Déploiement
+- Déploiement Progressif
+- Rollback
+- Versionnement des Services
+6.3 Outils Utilisés pour le Déploiement
+- Exemples d'Outils (par exemple, Kubernetes Deployments, Helm Charts)
+6.4 Défis Rencontrés lors du Déploiement
+- Gestion des Versions
+- Coexistence avec des Versions Antérieures
+
+Configuration d'Istio
+7.1 Gestion du Trafic
+- Routage Basé sur des Pourcentages
+- Canary Deployment
+- Répartition du Trafic
+7.2 Politiques de Sécurité avec Istio
+- Authentification des Services
+- Autorisation des Services
+
+Observabilité et Surveillance
+8.1 Utilisation de Prometheus et Grafana avec Istio
+8.2 Surveillance de la Performance de l'Application
+8.3 Analyse des Métriques du Service Mesh
+
+Gestion des Erreurs et Retours en Arrière
+9.1 Stratégies de Gestion des Erreurs
+- Récupération en Cas d'Échec d'un Service
+9.2 Fonctionnalités de Retour en Arrière avec Istio
+- Maintien de l'Expérience Utilisateur en Cas de Panne
+
+Conclusion - Partie Pratique
+10.1 Résumé des Implémentations Pratiques
+10.2 Leçons Apprises lors de la Mise en Œuvre
+10.3 Perspectives Futures
+
+Références
+11.1 Documentation Istio
+11.2 Autres Ressources Utilisées
+
+Cette division en deux parties vous permet de présenter d'abord les bases théoriques, les choix architecturaux, puis de passer à la mise en œuvre pratique du projet. N'hésitez pas à ajuster la profondeur de chaque section en fonction de vos besoins.
