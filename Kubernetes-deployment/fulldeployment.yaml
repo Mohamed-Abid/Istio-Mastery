@@ -10,6 +10,7 @@ spec:
     metadata:
       labels:
         app: adservice
+        version: v1.0.0
     spec:
       containers:
       - name: server
@@ -72,6 +73,7 @@ spec:
     metadata:
       labels:
         app: checkout
+        version: v1.0.0
     spec:
       containers:
       - name: server
@@ -148,6 +150,7 @@ spec:
     metadata:
       labels:
         app: cart
+        version: v1.0.0
     spec:
       containers:
       - name: server
@@ -210,6 +213,7 @@ spec:
     metadata:
       labels:
         app: email
+        version: v1.0.0
     spec:
       containers:
       - name: server
@@ -274,6 +278,7 @@ spec:
     metadata:
       labels:
         app: currency
+        version: v1.0.0
     spec:
       containers:
       - name: server
@@ -338,6 +343,7 @@ spec:
     metadata:
       labels:
         app: productcatalogue
+        version: v1.0.0
     spec:
       containers:
       - name: server
@@ -402,6 +408,7 @@ spec:
     metadata:
       labels:
         app: frontend
+        version: v1.0.0
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
@@ -423,22 +430,22 @@ spec:
           image: mohamedabid1/frontends:latest
           ports:
           - containerPort: 8080
-          readinessProbe:
-            initialDelaySeconds: 10
-            httpGet:
-              path: "/_healthz"
-              port: 8080
-              httpHeaders:
-              - name: "Cookie"
-                value: "shop_session-id=x-readiness-probe"
-          livenessProbe:
-            initialDelaySeconds: 10
-            httpGet:
-              path: "/_healthz"
-              port: 8080
-              httpHeaders:
-              - name: "Cookie"
-                value: "shop_session-id=x-liveness-probe"
+          # readinessProbe:
+          #   initialDelaySeconds: 10
+          #   httpGet:
+          #     path: "/_healthz"
+          #     port: 8080
+          #     httpHeaders:
+          #     - name: "Cookie"
+          #       value: "shop_session-id=x-readiness-probe"
+          # livenessProbe:
+          #   initialDelaySeconds: 10
+          #   httpGet:
+          #     path: "/_healthz"
+          #     port: 8080
+          #     httpHeaders:
+          #     - name: "Cookie"
+          #       value: "shop_session-id=x-liveness-probe"
           env:
           - name: PORT
             value: "8080"
@@ -478,7 +485,9 @@ spec:
   - protocol: TCP
     port: 8080
     targetPort: 8080
+    name: tcp-foo  # Add a custom suffix like "foo"
     nodePort: 30007
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -492,6 +501,7 @@ spec:
     metadata:
       labels:
         app: payment
+        version: v1.0.0
     spec:
       containers:
       - name: server
@@ -556,6 +566,7 @@ spec:
     metadata:
       labels:
         app: recommandation
+        version: v1.0.0
     spec:
       containers:
       - name: server
@@ -622,6 +633,7 @@ spec:
     metadata:
       labels:
         app: redis-cart
+        version: v1.0.0
     spec:
       securityContext:
         fsGroup: 1000
@@ -671,7 +683,7 @@ spec:
   selector:
     app: redis-cart
   ports:
-  - name: tcp-redis
+  - name: redis
     port: 6379
     targetPort: 6379
 ---
@@ -687,6 +699,7 @@ spec:
     metadata:
       labels:
         app: shipping
+        version: v1.0.0
     spec:
       serviceAccountName: default
       securityContext:
@@ -735,7 +748,7 @@ spec:
   selector:
     app: shipping
   ports:
-  - name: grpcredis
+  - name: grpc
     port: 50051
     targetPort: 50051
 
