@@ -478,15 +478,13 @@ kind: Service
 metadata:
   name: frontend
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: frontend
   ports:
-  - protocol: TCP
-    port: 8080
+  - name: http
+    port: 80
     targetPort: 8080
-    name: tcp-foo  # Add a custom suffix like "foo"
-    nodePort: 30007
 
 ---
 apiVersion: apps/v1
