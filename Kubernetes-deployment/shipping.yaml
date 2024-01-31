@@ -1,3 +1,10 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: app-shipping
+  labels:
+    account: shipping
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -10,8 +17,9 @@ spec:
     metadata:
       labels:
         app: shipping
+        version: v1
     spec:
-      serviceAccountName: default
+      serviceAccountName: app-shipping
       securityContext:
         fsGroup: 1000
         runAsGroup: 1000
@@ -26,7 +34,7 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: mohamedabid1/shipping:latest
+        image: mohamedabid1/shippingsvc:latest
         ports:
         - containerPort: 50051
         env:
@@ -44,7 +52,7 @@ spec:
         resources:
           requests:
             cpu: 100m
-            memory: 100Mi
+            memory: 64Mi
           limits:
             cpu: 200m
             memory: 128Mi
@@ -53,11 +61,14 @@ apiVersion: v1
 kind: Service
 metadata:
   name: shipping
+  labels:
+    app: shipping
+    service: shipping
 spec:
   type: ClusterIP
   selector:
     app: shipping
   ports:
-  - name: grpcredis
+  - name: grpc
     port: 50051
     targetPort: 50051

@@ -1,3 +1,11 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: app-cart
+  labels:
+    account: cart
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -10,7 +18,9 @@ spec:
     metadata:
       labels:
         app: cart
+        version: v1
     spec:
+      serviceAccountName: app-cart
       containers:
       - name: server
         image: mohamedabid1/cart:latest
@@ -51,6 +61,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: cart
+  labels:
+    app: cart
+    service: cart
 spec:
   type: ClusterIP
   selector:

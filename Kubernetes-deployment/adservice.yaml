@@ -1,3 +1,10 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: app-adservice
+  labels:
+    account: adservice
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -10,7 +17,9 @@ spec:
     metadata:
       labels:
         app: adservice
+        version: v1
     spec:
+      serviceAccountName: app-adservice
       containers:
       - name: server
         image: mohamedabid1/adservice:latest
@@ -51,6 +60,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: adservice
+  labels:
+    app: adservice
+    service: adservice
 spec:
   type: ClusterIP
   selector:

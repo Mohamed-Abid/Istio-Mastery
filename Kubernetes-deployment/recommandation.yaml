@@ -1,3 +1,10 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: app-recommandation
+  labels:
+    account: recommandation
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -10,7 +17,9 @@ spec:
     metadata:
       labels:
         app: recommandation
+        version: v1
     spec:
+      serviceAccountName: app-recommandation
       containers:
       - name: server
         image: mohamedabid1/recommandation:latest
@@ -55,6 +64,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: recommandation
+  labels:
+    app: recommandation
+    service: recommandation
 spec:
   type: ClusterIP
   selector:

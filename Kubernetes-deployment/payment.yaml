@@ -1,3 +1,10 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: app-payment
+  labels:
+    account: payment
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -10,7 +17,9 @@ spec:
     metadata:
       labels:
         app: payment
+        version: v1
     spec:
+      serviceAccountName: app-payment
       containers:
       - name: server
         image: mohamedabid1/payment:latest
@@ -53,6 +62,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: payment
+  labels:
+    app: payment
+    service: payment
 spec:
   type: ClusterIP
   selector:

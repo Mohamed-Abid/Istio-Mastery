@@ -1,3 +1,10 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: app-productcatalogue
+  labels:
+    account: productcatalogue
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -10,7 +17,9 @@ spec:
     metadata:
       labels:
         app: productcatalogue
+        version: v1
     spec:
+      serviceAccountName: app-productcatalogue
       containers:
       - name: server
         image: mohamedabid1/productcatalogue:latest
@@ -53,6 +62,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: productcatalogue
+  labels:
+    app: productcatalogue
+    service: productcatalogue
 spec:
   type: ClusterIP
   selector:
