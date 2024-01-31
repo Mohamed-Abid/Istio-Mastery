@@ -6,6 +6,13 @@
     {{$.platform_name}}
   </span>
 </div> -->
+
+<div {{ with $.platform_css }} class="{{.}}" {{ end }}>
+  <span class="platform-flag">
+      V1
+  </span>
+</div>
+
 <main role="main" class="home">
 
   <!-- The image at the top of the home page, displayed on smaller screens. -->

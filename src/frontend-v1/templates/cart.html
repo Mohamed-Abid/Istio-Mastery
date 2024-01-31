@@ -1,12 +1,13 @@
 {{ define "cart" }}
     {{ template "header" . }}
-    
-    <!-- <div {{ with $.platform_css }} class="{{.}}" {{ end }}>
+
+
+    <div {{ with $.platform_css }} class="{{.}}" {{ end }}>
         <span class="platform-flag">
-            {{$.platform_name}}
+            V1
         </span>
-    </div> -->
-    
+    </div>
+
     <main role="main" class="cart-sections">
 
         {{ if eq (len $.items) 0 }}
@@ -133,7 +134,7 @@
                                 <label for="country">Country</label>
                                 <input type="text" id="country"
                                     placeholder="Country Name"
-                                    name="country" required>
+                                    name="country" value="United States" required>
                             </div>
                         </div>
 
@@ -149,6 +150,7 @@
                                 <input type="text" id="credit_card_number"
                                     name="credit_card_number"
                                     placeholder="0000-0000-0000-0000"
+                                    value="4432-8015-6152-0454"
                                     required pattern="\d{4}-\d{4}-\d{4}-\d{4}">
                             </div>
                         </div>
@@ -186,7 +188,7 @@
                             <div class="col-md-3 cymbal-form-field">
                                 <label for="credit_card_cvv">CVV</label>
                                 <input type="password" id="credit_card_cvv"
-                                    name="credit_card_cvv" required pattern="\d{3}">
+                                    name="credit_card_cvv" value="672" required pattern="\d{3}">
                             </div>
                         </div>
 
