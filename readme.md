@@ -48,8 +48,8 @@
 
 8. Deploy Istio files:
     ```bash
-    kubectl apply -f Security.yaml
-    kubectl apply -f traffic.yaml
+    kubectl apply -f Manifests/Security.yaml
+    kubectl apply -f Manifests/traffic.yaml
     ```
 
 9.  Open the application in a browser by running:
