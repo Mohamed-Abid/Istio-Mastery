@@ -1,0 +1,26 @@
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: "peer-policy"
+spec:
+  mtls:
+    mode: STRICT
+
+# ---
+
+# apiVersion: security.istio.io/v1beta1
+# kind: AuthorizationPolicy
+# metadata:
+#   name: block-get-requests
+#   namespace: default
+# spec:
+#   action: DENY
+#   rules:
+#   - from:
+#     - source:
+#         namespaces: ["default"]
+#     to:
+#     - operation:
+#         methods: ["GET"]
+
+
