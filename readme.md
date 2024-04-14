@@ -12,7 +12,7 @@
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Mohamed-Abid/Istio-Mastery
+   git clone https://github.com/Mohamed-Abid/Istio-Mastery.git
    cd Istio-Mastery
     ```
 
